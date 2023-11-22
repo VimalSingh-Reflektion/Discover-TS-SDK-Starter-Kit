@@ -91,16 +91,16 @@ const CartComponent: React.FC<CartComponentProps> = ({ trackCartStatusEvent }) =
           <thead className="text-muted">
             <tr className="small text-uppercase">
               <th scope="col">Product</th>
-              <th scope="col" className="text-center" width="150">
+              <th scope="col" className="text-center" style={{ width: '150px' }}>
                 Price
               </th>
-              <th scope="col" width={120}>
+              <th scope="col" style={{ width: '120px' }}>
                 Quantity
               </th>
-              <th scope="col" className="text-center" width={150}>
+              <th scope="col" className="text-center" style={{ width: '150px' }}>
                 Total Price
               </th>
-              <th scope="col" className="text-end" width={130} />
+              <th scope="col" className="text-end" style={{ width: '130px' }} />
             </tr>
           </thead>
           <tbody>
@@ -156,7 +156,7 @@ const CartComponent: React.FC<CartComponentProps> = ({ trackCartStatusEvent }) =
                   <WishlistButton className="btn-sm btn-outline-secondary me-2" product={p.data} page={page} />
                   <button
                     className="btn btn-sm btn-outline-danger"
-                    onClick={() => removeProductFromCart(p.data.sku, p.quantity)}
+                    onClick={() => removeProductFromCart(p.data.sku)}
                   >
                     <IconTrash className="i-va" />
                   </button>

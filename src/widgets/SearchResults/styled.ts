@@ -306,7 +306,7 @@ const AccordionItemCheckboxStyled = styled(AccordionFacets.ItemCheckbox)`
   }
 
   &:focus {
-    border: solid 1px ${theme.vars.palette.primary['900']};
+    border: solid 1px ${theme.vars.palette.primary.main};
   }
 `;
 
@@ -321,7 +321,7 @@ const AccordionItemToggleStyled = styled(AccordionFacets.ItemToggle)`
   margin-right: ${theme.vars.spacing.s};
 
   &:focus {
-    border: solid 1px ${theme.vars.palette.primary['900']};
+    border: solid 1px ${theme.vars.palette.primary.main};
   }
 
   &[data-state='on'] {

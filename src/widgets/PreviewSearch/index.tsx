@@ -124,7 +124,7 @@ const PreviewSearchLeft = ({ defaultProductsPerPage = 6 }: {defaultProductsPerPa
                                     href={getProductUrl(p, true)}
                                     onClick={(event) => {
                                       event.preventDefault();
-                                      onProductClick({ sku: p.sku || '' });
+                                      onProductClick({ sku: p.sku || '' , index: i});
                                       navigate(getProductUrl(p));
                                     }}
                                   >
@@ -167,7 +167,7 @@ const PreviewSearchLeft = ({ defaultProductsPerPage = 6 }: {defaultProductsPerPa
                                     href={getProductUrl(p, true)}
                                     onClick={(event) => {
                                       event.preventDefault();
-                                      onProductClick({ sku: p.sku || '' });
+                                      onProductClick({ sku: p.sku || '', index: i });
                                       navigate(getProductUrl(p));
                                     }}
                                   >
@@ -209,7 +209,7 @@ const PreviewSearchLeft = ({ defaultProductsPerPage = 6 }: {defaultProductsPerPa
                                     href={getProductUrl(p, true)}
                                     onClick={(event) => {
                                       event.preventDefault();
-                                      onProductClick({ sku: p.sku || '' });
+                                      onProductClick({ sku: p.sku || '', index: i });
                                       navigate(getProductUrl(p));
                                     }}
                                   >
@@ -243,7 +243,7 @@ const PreviewSearchLeft = ({ defaultProductsPerPage = 6 }: {defaultProductsPerPa
                               href={getProductUrl(p, true)}
                               onClick={(event) => {
                                 event.preventDefault();
-                                onProductClick({ sku: p.sku || '' });
+                                onProductClick({ sku: p.sku || '', index: i });
                                 navigate(getProductUrl(p));
                               }}
                             >

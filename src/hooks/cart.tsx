@@ -68,7 +68,7 @@ export const CartContext = React.createContext({
   addProductsToCart: (products, page = PAGE_EVENTS_DEFAULT) => {
     console.log(products, page);
   },
-  removeProductFromCart: (productId) => {
+  removeProductFromCart: (productId: string) => {
     console.log(productId);
   },
   clearCart: () => {},
@@ -148,7 +148,7 @@ export const CartProvider = (props) => {
     trackAddToCartEvent(productsEventTrack, page, PageController.getContext().toJson());
   };
 
-  const removeProductFromCart = (productId, quantity = 1) => {
+  const removeProductFromCart = (productId: string, quantity = 1) => {
     if (quantity <= 0) return;
     const currentItem = state.cart.find((i) => i.data.sku === productId);
     if (currentItem) {
