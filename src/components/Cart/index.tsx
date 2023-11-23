@@ -27,12 +27,11 @@ interface CartItem {
   data: Product;
   quantity: number;
 }
-const Size = ({ size }: SizeProps) =>
-size && (
+const Size = ({ size }: SizeProps) => (size) ? (
   <span className="me-2">
     <strong>Size</strong>: {size}
   </span>
-);
+) : <></>;
 
 Size.propTypes = {
   size: PropTypes.string,
@@ -43,12 +42,11 @@ Size.defaultProps = {
 interface BrandProps {
   brand?: string;
 }
-const Brand = ({ brand }: BrandProps) =>
-  brand && (
+const Brand = ({ brand }: BrandProps) => (brand) ? (
     <span className="me-2">
       <strong>Brand</strong>: {brand}
     </span>
-  );
+  ) : <></>;
 Brand.propTypes = {
   brand: PropTypes.string,
 };
@@ -91,16 +89,16 @@ const CartComponent: React.FC<CartComponentProps> = ({ trackCartStatusEvent }) =
           <thead className="text-muted">
             <tr className="small text-uppercase">
               <th scope="col">Product</th>
-              <th scope="col" className="text-center" width="150">
+              <th scope="col" className="text-center" style={{ width: '150px' }}>
                 Price
               </th>
-              <th scope="col" width={120}>
+              <th scope="col" style={{ width: '120px' }}>
                 Quantity
               </th>
-              <th scope="col" className="text-center" width={150}>
+              <th scope="col" className="text-center" style={{ width: '150px' }}>
                 Total Price
               </th>
-              <th scope="col" className="text-end" width={130} />
+              <th scope="col" className="text-end" style={{ width: '130px' }} />
             </tr>
           </thead>
           <tbody>
@@ -143,7 +141,7 @@ const CartComponent: React.FC<CartComponentProps> = ({ trackCartStatusEvent }) =
                     <button
                       className="btn btn-primary text-white"
                       type="button"
-                      onClick={() => addProductToCart({ ...p.data }, 1, page)}
+                      onClick={() => addProductToCart({ ...p.data }, 1)}
                     >
                       <FontAwesomeIcon icon={faPlus} />
                     </button>
@@ -153,10 +151,10 @@ const CartComponent: React.FC<CartComponentProps> = ({ trackCartStatusEvent }) =
                   <var className="price">${p.data.final_price * p.quantity}</var>
                 </td>
                 <td className="text-end">
-                  <WishlistButton className="btn-sm btn-outline-secondary me-2" product={p.data} page={page} />
+                  <WishlistButton className="btn-sm btn-outline-secondary me-2" product={p.data} />
                   <button
                     className="btn btn-sm btn-outline-danger"
-                    onClick={() => removeProductFromCart(p.data.sku, p.quantity)}
+                    onClick={() => removeProductFromCart(p.data.sku)}
                   >
                     <IconTrash className="i-va" />
                   </button>

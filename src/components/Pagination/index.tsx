@@ -11,7 +11,7 @@ interface PaginationItemsProps {
   page?: number;
 }
 
-const PaginationItem: React.FC<PaginationItemsProps> = ({ type, page }) =>
+const PaginationItem: React.FC<PaginationItemsProps> = ({ type, page = 0 }) =>
   type === 'start-ellipsis' || type === 'end-ellipsis' ? (
     <StyledPagination.Ellipsis>…</StyledPagination.Ellipsis>
   ) : (
@@ -60,7 +60,6 @@ const Pagination: React.FC<PaginationProps> = (props) => {
       defaultCurrentPage={defaultPage}
       totalPages={totalPages}
       onPageChange={(v) => onPageChange(v)}
-      href={() => {}}
     >
       {showFirstButton && (
         <StyledPagination.FirstPage onClick={(e) => e.preventDefault()}>
