@@ -1,3 +1,5 @@
+import { NOTIFICATION_CONTAINER, NOTIFICATION_INSERTION } from "react-notifications-component";
+
 export const CART_KEY = 'sitecore-discover-cart';
 export const CART_ADD_PRODUCT = 'ADD_PRODUCT';
 export const CART_REMOVE_PRODUCT = 'REMOVE_PRODUCT';
@@ -10,8 +12,8 @@ export const WISHLIST_REMOVE_PRODUCT = 'WISHLIST_REMOVE_PRODUCT';
 export const WISHLIST_CLEAR = 'WISHLIST_CLEAR_CART';
 
 export const NOTIFICATION_PROPS: {
-  insert: string;
-  container: string;
+  insert: NOTIFICATION_INSERTION;
+  container: NOTIFICATION_CONTAINER;
   animationIn: string[];
   animationOut: string[];
   dismiss: {

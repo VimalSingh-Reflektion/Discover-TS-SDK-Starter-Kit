@@ -16,7 +16,7 @@ import {
 import { PAGE_EVENTS_DEFAULT } from '../helpers/constants';
 import useLocalStorage from './useLocalStorage';
 
-const cartReducer = (state, action) => {
+const cartReducer = (state: { cart: any; }, action: { type: any; payload: { id: any; quantity: any; }; }) => {
   switch (action.type) {
     case CART_ADD_PRODUCT: {
       const { cart } = state;
@@ -25,7 +25,7 @@ const cartReducer = (state, action) => {
     case CART_UPDATE_PRODUCT: {
       const { cart } = state;
       const { id, quantity } = action.payload;
-      const newCart = cart.map((item) => {
+      const newCart = cart.map((item: { data: { sku: any; }; }) => {
         if (item.data.sku === id) {
           return { data: item.data, quantity };
         }
@@ -38,9 +38,9 @@ const cartReducer = (state, action) => {
       const { id, quantity } = action.payload;
       let newCart = [];
       if (quantity <= 0) {
-        newCart = cart.filter((item) => item.data.sku !== id);
+        newCart = cart.filter((item: { data: { sku: any; }; }) => item.data.sku !== id);
       } else {
-        newCart = cart.map((item) => {
+        newCart = cart.map((item: { data: { sku: any; }; }) => {
           if (item.data.sku === id) {
             return { data: item.data, quantity };
           }
@@ -62,10 +62,10 @@ export const CartContext = React.createContext({
   discount: 0,
   orderTotal: 0,
   orderSubTotal: 0,
-  addProductToCart: (product, quantity = 1, page = PAGE_EVENTS_DEFAULT) => {
+  addProductToCart: (product: any, quantity = 1, page = PAGE_EVENTS_DEFAULT) => {
     console.log(product, quantity, page);
   },
-  addProductsToCart: (products, page = PAGE_EVENTS_DEFAULT) => {
+  addProductsToCart: (products: any, page = PAGE_EVENTS_DEFAULT) => {
     console.log(products, page);
   },
   removeProductFromCart: (productId: string) => {
@@ -74,7 +74,7 @@ export const CartContext = React.createContext({
   clearCart: () => {},
 });
 
-export const CartProvider = (props) => {
+export const CartProvider = (props: { children: any; }) => {
   const { children } = props;
   const [savedCart, saveCart] = useLocalStorage(CART_KEY, JSON.stringify([]));
   const [orderTotal, setOrderTotal] = useState(0);
@@ -87,7 +87,7 @@ export const CartProvider = (props) => {
     saveCart(JSON.stringify(state.cart));
     let total = 0;
     let subtotal = 0;
-    state.cart.forEach((item) => {
+    state.cart.forEach((item: { data: { price: string | number; final_price: string | number; }; quantity: number; }) => {
       total += +item.data.price * item.quantity;
       subtotal += +item.data.final_price * item.quantity;
     });
@@ -95,11 +95,11 @@ export const CartProvider = (props) => {
     setOrderSubTotal(subtotal);
   }, [state, saveCart]);
 
-  const addProduct = (product, quantity = 1) => {
+  const addProduct = (product: Product, quantity = 1) => {
     if (quantity <= 0) return;
-    const currentItem = state.cart.find((i) => i.data.sku === product.sku);
+    const currentItem = state.cart.find((i: { data: { sku: string; }; }) => i.data.sku === product.sku);
     if (!currentItem) {
-      const payload = { data: product, quantity };
+      const payload = { id: product.sku, quantity };
       dispatch({ type: CART_ADD_PRODUCT, payload });
     } else {
       const payload = { id: product.sku, quantity: currentItem.quantity + quantity };
@@ -110,7 +110,6 @@ export const CartProvider = (props) => {
     }
 
     Notification.addNotification({
-      // eslint-disable-next-line react/no-unstable-nested-components
       content: () => <ProductNotification name={product.name} image_url={product.image_url} action="Adding" />,
       ...NOTIFICATION_PROPS,
     });
