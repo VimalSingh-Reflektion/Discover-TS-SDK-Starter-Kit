@@ -19,7 +19,7 @@ const CartView = (): JSX.Element => {
   useEffect(() => {
     const skusItems: string[] = [];
 
-    cart.forEach((item) => {
+    cart.forEach((item: {data: {sku: string}}) => {
       skusItems.push(item.data.sku);
     });
     setSkus(skusItems);
@@ -35,7 +35,7 @@ const CartView = (): JSX.Element => {
       // Cart status event will be tracked when client access to cart page or when a product is removed from the bag
       trackStatusCartEvent(
         cart.map(
-          (p) => ({
+          (p: {data: {sku: string; final_price: number; price: number;}; quantity: number}) => ({
             quantity: p.quantity,
             sku: p.data.sku,
             price: p.data.final_price,

@@ -64,7 +64,7 @@ const ProductCard = (props: ProductCardProps): JSX.Element => {
           {displayAddToCard && (
             <ProductCardStyled.AddToCart
               className="btn btn-primary text-white addToCart"
-              onClick={() => addProductToCart({ ...product }, 1, page)}
+              onClick={() => addProductToCart({ ...product }, 1, page as string)}
               title="Add to Cart"
             >
               <svg

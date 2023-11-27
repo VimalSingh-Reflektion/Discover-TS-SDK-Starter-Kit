@@ -8,11 +8,12 @@ import CustomPageWidgets from '../../widgets/CustomPageWidgets';
 import ProductDetails from '../../widgets/ProductDetails';
 
 const ProductDetailView = (): JSX.Element => {
-  const { sku } = useParams();
+  const { sku } = useParams<{ sku: string }>();
   useEffect(() => {
+    if(sku) {
     PageController.getContext().setPageSkus([sku]);
     trackPDPViewEvent(sku);
-
+    }
     return () => {
       PageController.getContext().resetPageSkus();
     };

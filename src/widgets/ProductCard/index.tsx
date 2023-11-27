@@ -8,19 +8,19 @@ import { PageEventContext } from '../../hocs/withPageTracking';
 import { useCart } from '../../hooks/cart';
 import ProductCardStyled from './styled';
 
-interface Product {
+interface ProductItemProps {
   price: string;
   final_price: string;
   sku: string;
   name: string;
-  image_url: string;
+  image_url: string
 }
 interface ProductCardProps {
-  product: Product;
+  product: ProductItemProps;
   displayQuickView: boolean;
   displaySku: boolean;
   displayAddToCard: boolean;
-  onProductClick: (params: { sku?: string }) => void;
+  onProductClick: (params: { sku: string }) => void;
   className?: string;
 }
 const ProductCard = (props: ProductCardProps): JSX.Element => {
@@ -65,7 +65,7 @@ const ProductCard = (props: ProductCardProps): JSX.Element => {
           {displayAddToCard && (
             <ProductCardStyled.AddToCart
               className="btn btn-primary text-white addToCart"
-              onClick={() => addProductToCart({ ...product }, 1, page)}
+              onClick={() => addProductToCart({ ...product }, 1, 'page')}
               title="Add to Cart"
             >
               <svg

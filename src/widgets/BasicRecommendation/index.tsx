@@ -26,7 +26,7 @@ export const Recommendation = (props: RecommendationProps): JSX.Element => {
   return (
     <RecommendationContainer {...restProps}>
       {ready && (
-        <>
+        <>  
           {title && <Header>{title}</Header>}
 
           <ProductsGrid>

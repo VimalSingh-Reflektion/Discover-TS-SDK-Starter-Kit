@@ -95,7 +95,7 @@ export const CartProvider = (props: { children: any; }) => {
     setOrderSubTotal(subtotal);
   }, [state, saveCart]);
 
-  const addProduct = (product: Product, quantity = 1) => {
+  const addProduct = (product: any, quantity = 1) => {
     if (quantity <= 0) return;
     const currentItem = state.cart.find((i: { data: { sku: string; }; }) => i.data.sku === product.sku);
     if (!currentItem) {
@@ -132,8 +132,8 @@ export const CartProvider = (props: { children: any; }) => {
     );
   };
 
-  const addProductsToCart = (products, page = PAGE_EVENTS_DEFAULT) => {
-    const productsEventTrack = [];
+  const addProductsToCart = (products: any[], page = PAGE_EVENTS_DEFAULT) => {
+    const productsEventTrack: any[] = [];
     products.forEach((product) => {
       addProduct(product, 1);
       productsEventTrack.push({
@@ -149,7 +149,7 @@ export const CartProvider = (props: { children: any; }) => {
 
   const removeProductFromCart = (productId: string, quantity = 1) => {
     if (quantity <= 0) return;
-    const currentItem = state.cart.find((i) => i.data.sku === productId);
+    const currentItem = state.cart.find((i: { data: { sku: string; }; }) => i.data.sku === productId);
     if (currentItem) {
       const payload = {
         id: productId,

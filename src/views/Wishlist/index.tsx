@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom';
 import getProductUrl from '../../helpers/getProductUrl';
 import { useWishlist } from '../../hooks/wishlist';
 
+interface WishListProps {
+  data: {
+    sku: string;
+    image_url: string;
+    name: string;
+  }
+}
 const WishlistView = (): JSX.Element => {
   const { wishlist, clearWishlist } = useWishlist();
 
@@ -21,7 +28,7 @@ const WishlistView = (): JSX.Element => {
             </div>
             <div className="col-md-12">
               <ul className="list-group">
-                {wishlist.map((p) => (
+                {wishlist.map((p: WishListProps) => (
                   <li className="list-group-item" key={`item-${p.data.sku}`}>
                     <div className="media d-flex">
                       <img src={p.data.image_url} className="mr-3" width="80" alt={p.data.name} />
