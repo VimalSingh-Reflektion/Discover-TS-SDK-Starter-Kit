@@ -75,7 +75,7 @@ const PurchaseTogetherListView = ({ products, productsToRemove, currentSku, onPr
   const page = useContext(PageEventContext);
   const productsToBuy = products.filter((p) => !productsToRemove[p.sku]);
   const onAddToCartClick = () => {
-    addProductsToCart(productsToBuy, page);
+    addProductsToCart(productsToBuy, 'page');
   };
   const totalPrice = productsToBuy.reduce((accumulator, product) => accumulator + Number(product.final_price), 0);
 

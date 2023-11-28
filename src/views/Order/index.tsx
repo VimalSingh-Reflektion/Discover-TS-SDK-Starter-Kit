@@ -18,34 +18,26 @@ function makeid(length: number): string {
   }
   return result;
 }
-
+interface CartItem {
+  quantity: number;
+  sku: string;
+  price: number;
+  priceOriginal: number;
+  image: string;
+  name: string;
+  discount: number;
+}
 const OrderView = () => {
   const { cart, clearCart, orderTotal: total, orderSubTotal: subtotal, discount: totalDiscount } = useCart();
-  const [orderProducts, setOrderProducts] = useState<Array<{
-    quantity: number;
-    sku: string;
-    price: number;
-    priceOriginal: number;
-    image: string;
-    name: string;
-    discount: number;
-  }>>([]);
+  const [orderProducts, setOrderProducts] = useState<CartItem[]>([]);
   const [orderTotal, setOrderTotal] = useState(0);
   const [orderSubTotal, setOrderSubTotal] = useState(0);
   const [discount, setDiscount] = useState(0);
 
   useEffect(() => {
-    const cartItems: Array<{
-      quantity: number;
-      sku: string;
-      price: string;
-      priceOriginal: string;
-      image: string;
-      name: string;
-      discount: number;
-    }>[] = [];
+    const cartItems: CartItem[] = [];
     const skusItems: string[] = [];
-    cart.forEach((item) => {
+    cart.forEach((item: any) => {
       skusItems.push(item.data.sku);
       cartItems.push({
         quantity: item.quantity,
@@ -95,10 +87,10 @@ const OrderView = () => {
                   <thead className="text-muted">
                     <tr className="small text-uppercase">
                       <th scope="col">Product</th>
-                      <th scope="col" width={120}>
+                      <th scope="col" style={{ width: '120'}}>
                         Quantity
                       </th>
-                      <th scope="col" width={150}>
+                      <th scope="col" style={{ width: '150'}}>
                         Price
                       </th>
                     </tr>

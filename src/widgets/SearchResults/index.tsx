@@ -77,7 +77,6 @@ export const SearchResults = ({
       } = {},
     },
   } = useSearchResults((query) => {
-debugger;
     query.getRequest().setContextValuesCategoryItems(['name', 'url_path']);
 
     return {
@@ -150,7 +149,7 @@ debugger;
                 </StyledAccordionFacets.Header>
                 <AccordionFacets.Content>
                   <StyledAccordionFacets.ValueList>
-                    {facets[f].value.map((v, index) => (
+                    {facets[f].value.map((v: any, index: number) => (
                       <StyledAccordionFacets.Item
                         key={v.id}
                         {...{
@@ -286,7 +285,7 @@ debugger;
               </StyledSelect.Root>
             </div>
             <div>
-              <Pagination page={page} defaultPage={1} totalPages={totalPages} onPageChange={onPageNumberChange} />
+              <Pagination page={page as number} defaultPage={1} totalPages={totalPages} onPageChange={(v) => onPageNumberChange({ page: v})} />
             </div>
           </StyledPageControls>
         </SearchResultsLayout.RightArea>

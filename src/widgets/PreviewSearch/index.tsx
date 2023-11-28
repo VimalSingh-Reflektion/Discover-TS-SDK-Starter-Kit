@@ -26,7 +26,7 @@ import {
   StyledTrigger,
 } from './styled';
 
-const PreviewSearchLeft = ({ defaultProductsPerPage = 6 }: {defaultProductsPerPage: number}): JSX.Element => {
+const PreviewSearchLeft = ({ defaultProductsPerPage = 6 }: {defaultProductsPerPage: number}) => {
   const {
     setLock,
     lock,
@@ -50,8 +50,8 @@ const PreviewSearchLeft = ({ defaultProductsPerPage = 6 }: {defaultProductsPerPa
     setValue(newValue);
   };
 
-  const keyphraseHandler = useCallback((event: { target: any; }) => {
-    const { target } = event;
+  const keyphraseHandler = useCallback((event: KeyboardEvent) => {
+    const target = event.target as HTMLInputElement;
     setLock(false);
     setActiveItem('defaultProductsResults');
     onKeyphraseChange({ keyphrase: target.value });

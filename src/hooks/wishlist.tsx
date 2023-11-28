@@ -56,8 +56,8 @@ export const WishlistProvider = (props) => {
 
   const value = useMemo(
     () => ({
-      addProductToWishlist: (product, page = PAGE_EVENTS_DEFAULT) => {
-        const currentItem = state.wishlist.find((i) => i.data.sku === product.sku);
+      addProductToWishlist: (product: { sku: any; final_price: any; price: any; }, page = PAGE_EVENTS_DEFAULT) => {
+        const currentItem = state.wishlist.find((i: any) => i.data.sku === product.sku);
         if (!currentItem) {
           const payload = { data: product };
           dispatch({ type: WISHLIST_ADD_PRODUCT, payload });
@@ -76,8 +76,8 @@ export const WishlistProvider = (props) => {
           );
         }
       },
-      removeProductFromWishlist: (productId) => {
-        const currentItem = state.wishlist.find((i) => i.data.sku === productId);
+      removeProductFromWishlist: (productId: any) => {
+        const currentItem = state.wishlist.find((i: { data: { sku: any; }; }) => i.data.sku === productId);
         if (currentItem) {
           const payload = {
             id: productId,
@@ -88,7 +88,7 @@ export const WishlistProvider = (props) => {
       clearWishlist: () => {
         dispatch({ type: WISHLIST_CLEAR, payload: {} });
       },
-      isProductInWishlist: (productId) => state.wishlist.find((i) => i.data.sku === productId),
+      isProductInWishlist: (productId: any) => state.wishlist.find((i: { data: { sku: any; }; }) => i.data.sku === productId),
       wishlist: state.wishlist,
     }),
     [state.wishlist],

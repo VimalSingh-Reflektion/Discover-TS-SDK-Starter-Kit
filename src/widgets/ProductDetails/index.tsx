@@ -73,7 +73,7 @@ const ProductDetails = (props: any) => {
   }, [productQuantity]);
 
   const onAddToCartClick = useCallback(() => {
-    addProductToCart(product, productQuantity, page);
+    addProductToCart(product, productQuantity, page as string);
   }, [product, productQuantity]);
 
   if (!isLoading && product) {
@@ -85,7 +85,7 @@ const ProductDetails = (props: any) => {
       free_shipping,
       image_url,
       name,
-      price,
+      price = '0',
       review_count,
       review_rating,
       sale_flag,
@@ -94,6 +94,7 @@ const ProductDetails = (props: any) => {
       size,
       swatch,
     } = product;
+    
     const discount = parseFloat(price) - parseFloat(final_price);
 
     content = (
@@ -175,7 +176,7 @@ const ProductDetails = (props: any) => {
                 >
                   <FontAwesomeIcon icon={faCartPlus} /> Add to cart
                 </button>
-                <WishlistButton className="btn-m btn-outline-secondary" product={product} page={page} />
+                <WishlistButton className="btn-m btn-outline-secondary" product={product} page={page as string} />
               </div>
               <hr />
               <div dangerouslySetInnerHTML={{ __html: description }} />
