@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import { useState } from 'react';
 
-export default (key, initialValue) => {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default (key: string, initialValue: any) => {
   const [storedValue, setStoredValue] = useState(() => {
     try {
       const item = typeof window !== 'undefined' && window.localStorage.getItem(key);
@@ -11,7 +12,7 @@ export default (key, initialValue) => {
     }
   });
 
-  const setValue = (value) => {
+  const setValue = (value: (arg0: any) => any) => {
     try {
       const valueToStore = value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);

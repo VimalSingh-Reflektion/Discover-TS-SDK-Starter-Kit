@@ -16,7 +16,7 @@ import {
 import { PAGE_EVENTS_DEFAULT } from '../helpers/constants';
 import useLocalStorage from './useLocalStorage';
 
-const cartReducer = (state: { cart: any; }, action: { type: any; payload: { id: any; quantity: any; }; }) => {
+const cartReducer = (state: { cart: any; }, action: { type: any; payload: any }) => {
   switch (action.type) {
     case CART_ADD_PRODUCT: {
       const { cart } = state;

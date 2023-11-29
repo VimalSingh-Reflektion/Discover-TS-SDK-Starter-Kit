@@ -7,7 +7,7 @@ import { PageEventContext } from '../../hocs/withPageTracking';
 import { useCart } from '../../hooks/cart';
 import ProductCardStyled from './styled';
 
-interface Product {
+interface ProductCardListProps {
   price: string;
   final_price: string;
   sku: string;
@@ -15,7 +15,7 @@ interface Product {
   image_url: string;
 }
 interface ProductCardProps {
-  product: Product;
+  product: ProductCardListProps;
   displayQuickView: boolean;
   displaySku: boolean;
   displayAddToCard: boolean;

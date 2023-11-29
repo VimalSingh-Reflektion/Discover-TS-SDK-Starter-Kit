@@ -7,7 +7,7 @@ import { WISHLIST_ADD_PRODUCT, WISHLIST_CLEAR, WISHLIST_KEY, WISHLIST_REMOVE_PRO
 import { PAGE_EVENTS_DEFAULT } from '../helpers/constants';
 import useLocalStorage from './useLocalStorage';
 
-const wishlistReducer = (state, action) => {
+const wishlistReducer = (state: { wishlist: any; }, action: { type: string; payload: any }) => {
   switch (action.type) {
     case WISHLIST_ADD_PRODUCT: {
       const { wishlist } = state;
@@ -18,7 +18,7 @@ const wishlistReducer = (state, action) => {
       const { wishlist } = state;
       const { id } = action.payload;
 
-      return { ...state, wishlist: wishlist.filter((item) => item.data.sku !== id) };
+      return { ...state, wishlist: wishlist.filter((item: { data: { sku: string; }; }) => item.data.sku !== id) };
     }
     case WISHLIST_CLEAR: {
       return { ...state, wishlist: [] };
@@ -30,20 +30,20 @@ const wishlistReducer = (state, action) => {
 
 export const WishlistContext = React.createContext({
   wishlist: [],
-  isProductInWishlist: (productId) => {
+  isProductInWishlist: (productId: string) => {
     console.log(productId);
     return false;
   },
-  addProductToWishlist: (product, page) => {
+  addProductToWishlist: (product: any, page: string) => {
     console.log(product, page);
   },
-  removeProductFromWishlist: (productId) => {
+  removeProductFromWishlist: (productId: string) => {
     console.log(productId);
   },
   clearWishlist: () => {},
 });
 
-export const WishlistProvider = (props) => {
+export const WishlistProvider = (props: { children: any; }): JSX.Element => {
   const { children } = props;
   const [savedWishlist, saveWishlist] = useLocalStorage(WISHLIST_KEY, JSON.stringify([]));
   const [state, dispatch] = useReducer(wishlistReducer, {
@@ -88,7 +88,7 @@ export const WishlistProvider = (props) => {
       clearWishlist: () => {
         dispatch({ type: WISHLIST_CLEAR, payload: {} });
       },
-      isProductInWishlist: (productId: any) => state.wishlist.find((i: { data: { sku: any; }; }) => i.data.sku === productId),
+      isProductInWishlist: (productId: string) => state.wishlist.find((i: { data: { sku: any; }; }) => i.data.sku === productId),
       wishlist: state.wishlist,
     }),
     [state.wishlist],

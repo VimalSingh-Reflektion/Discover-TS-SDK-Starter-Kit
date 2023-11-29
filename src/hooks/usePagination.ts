@@ -7,7 +7,21 @@
  */
 import useControlled from './useControlled';
 
-export default function usePagination(props = {}) {
+interface PaginationProps {
+  boundaryCount?: number;
+  totalPages?: number;
+  defaultPage?: number;
+  disabled?: boolean;
+  hideNextButton?: boolean;
+  hidePrevButton?: boolean;
+  onChange?: (event: KeyboardEvent, value: number) => void;
+  page?: number;
+  showFirstButton?: boolean;
+  showLastButton?: boolean;
+  siblingCount?: number;
+  includeControlButtons?: boolean;
+}
+export default function usePagination(props: PaginationProps = {}) {
   // keep default values in sync with @default tags in Pagination.propTypes
   const {
     boundaryCount = 1,
