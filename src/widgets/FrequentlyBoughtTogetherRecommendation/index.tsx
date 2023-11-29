@@ -8,7 +8,7 @@ import { useCart } from '../../hooks/cart';
 import { Header } from '../BasicRecommendation/styled';
 import { ProductCheckboxList, ProductListView, PurchaseTogetherContainer, RecommendationContainer } from './styled';
 
-interface Product {
+interface ProductListProps {
   sku: string;
   name: string;
   image_url: string;
@@ -16,7 +16,7 @@ interface Product {
   sku_url_key: string;
 }
 interface ProductListViewItemProps {
-  product: Product;
+  product: ProductListProps
   displayPlusItem: boolean;
   isCurrentProduct: boolean;
   onProductClick: (data: {sku: string }) => void;
@@ -65,7 +65,7 @@ ProductListViewItem.propTypes = {
 };
 
 interface PurchaseTogetherListViewProps {
-  products: Product[];
+  products: ProductListProps[];
   currentSku: string;
   productsToRemove: Record<string, boolean>;
   onProductClick: (data: { sku: string }) => void;
@@ -130,7 +130,7 @@ PurchaseTogetherListView.propTypes = {
 PurchaseTogetherListView.defaultProps = { products: [], productsToRemove: {} };
 
 interface PurchaseTogetherCheckboxListProps {
-  products: Product[];
+  products: ProductListProps[];
   productsToRemove: Record<string, boolean>;
   currentSku: string;
   onProductClick: (data: { sku: string }) => void;

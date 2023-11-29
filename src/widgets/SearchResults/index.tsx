@@ -61,8 +61,8 @@ export const SearchResults = ({
     context: {
       sortType = defaultSortType,
       sortDirection = defaultSortDirection,
-      page = defaultPage,
-      productsPerPage = defaultProductsPerPage,
+      page = defaultPage ?? 1,
+      productsPerPage = defaultProductsPerPage ?? 24,
     },
     queryResult: {
       isLoading,
@@ -115,7 +115,7 @@ export const SearchResults = ({
               {categories.length ? (
                 categories.map((c, index, { length }) => (
                   <StyledBreadcrumb.Item key={c.url_path}>
-                    <StyledBreadcrumb.Link as={Link} to={c.url_path} onClick={(e) => e.preventDefault()}>
+                    <StyledBreadcrumb.Link as={Link} to={c.url_path} onClick={(e: React.MouseEvent) => e.preventDefault()}>
                       {c.name}
                     </StyledBreadcrumb.Link>
                     {index < length - 1 && <StyledBreadcrumb.Separator value="»" />}
@@ -202,14 +202,14 @@ export const SearchResults = ({
             <SearchResultsLayout.RightTopAreaContainer>
               {totalItems && (
                 <StyledQuerySummary>
-                  Showing {productsPerPage * (page - 1) + 1} - {productsPerPage * (page - 1) + products.length} of{' '}
+                  Showing {productsPerPage * (page - 1) + 1} - {productsPerPage * (page - 1) + products?.length || 0} of{' '}
                   {totalItems} results
                 </StyledQuerySummary>
               )}
             </SearchResultsLayout.RightTopAreaContainer>
             <SearchResultsLayout.RightTopAreaContainer>
               <StyledSortSelect.Root
-                defaultValue={selectedSortIndex > -1 ? sortChoices[selectedSortIndex] : {}}
+                defaultValue={selectedSortIndex > -1 ? (sortChoices[selectedSortIndex] as SortSelectOptionItem) : {}}
                 onValueChange={onSortChange}
               >
                 <StyledSortSelect.Trigger>
@@ -314,7 +314,7 @@ SearchResults.defaultProps = {
 
 export const SearchQueryResults = (): JSX.Element => {
   const [searchParams] = useSearchParams();
-  const query = searchParams.get('q');
+  const query = searchParams.get('q') || '';
 
   return <SearchResults defaultKeyphrase={query} title={`Showing results for "${query}"`} />;
 };

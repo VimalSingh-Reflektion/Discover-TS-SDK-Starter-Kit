@@ -7,10 +7,7 @@ import { PAGE_EVENTS_DEFAULT } from '../../helpers/constants';
 import { useWishlist } from '../../hooks/wishlist';
 
 interface WishlistButtonProps {
-  product: {
-    sku: string;
-    name: string;
-  };
+  product: any;
   className: string;
   page: string;
 }

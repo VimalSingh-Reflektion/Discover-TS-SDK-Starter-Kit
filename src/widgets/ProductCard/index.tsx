@@ -8,19 +8,12 @@ import { PageEventContext } from '../../hocs/withPageTracking';
 import { useCart } from '../../hooks/cart';
 import ProductCardStyled from './styled';
 
-interface ProductItemProps {
-  price: string;
-  final_price: string;
-  sku: string;
-  name: string;
-  image_url: string
-}
 interface ProductCardProps {
-  product: ProductItemProps;
+  product: any;
   displayQuickView: boolean;
   displaySku: boolean;
   displayAddToCard: boolean;
-  onProductClick: (params: { sku: string }) => void;
+  onProductClick: any;
   className?: string;
 }
 const ProductCard = (props: ProductCardProps): JSX.Element => {
@@ -29,7 +22,7 @@ const ProductCard = (props: ProductCardProps): JSX.Element => {
     displayQuickView,
     displaySku = true,
     displayAddToCard = true,
-    onProductClick = ({ sku }) => sku,
+    onProductClick = ({ sku }: any) => sku,
     ...respProps
   } = props;
   const { addProductToCart } = useCart();

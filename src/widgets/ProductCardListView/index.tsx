@@ -7,24 +7,17 @@ import { PageEventContext } from '../../hocs/withPageTracking';
 import { useCart } from '../../hooks/cart';
 import ProductCardStyled from './styled';
 
-interface ProductCardListProps {
-  price: string;
-  final_price: string;
-  sku: string;
-  name: string;
-  image_url: string;
-}
 interface ProductCardProps {
-  product: ProductCardListProps;
+  product: any;
   displayQuickView: boolean;
   displaySku: boolean;
   displayAddToCard: boolean;
-  onProductClick: (params: { sku?: string }) => void;
+  onProductClick: any;
 }
 const ProductCard = (props: ProductCardProps): JSX.Element => {
   const {
     product,
-    onProductClick = ({ sku }) => sku,
+    onProductClick = ({ sku }: any) => sku,
     displaySku,
     displayAddToCard,
     displayQuickView,
